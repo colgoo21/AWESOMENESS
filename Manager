@@ -1,0 +1,8 @@
+import tkinter
+
+from Game import Application
+
+class Game_Manager (object):
+
+  def __init__(self):
+    a
