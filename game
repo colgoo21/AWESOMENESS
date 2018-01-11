@@ -6,10 +6,17 @@ screen = pygame.display.set_mode((640, 480))
 pygame.display.set_caption('Character_movement')
 
 
-character_width = 10
-character_height = 10
+def character_main(self):
+    image = pygame.image.load('Galaga.jpg')
+
+def enemy_main(self):
+    image = pygame.image.load('GalagaEnemy.png')
+    
+def bullet_main(self):
+    image = pygame.image.load('GalagaBullet.png')
+    
 characterSpeedX = 0
-p1Character = pygame.Rect(10, 430, PADDLE_WIDTH, PADDLE_HEIGHT)
+character = pygame.Rect(10, 430, PADDLE_WIDTH, PADDLE_HEIGHT)
 board_color = pygame.color.Color("black")
 
 # clock object that will be used to make the game
