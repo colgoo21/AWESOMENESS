@@ -1,0 +1,46 @@
+import pygame, sys
+from pygame import *
+
+pygame.init()
+screen = pygame.display.set_mode((640, 480))
+pygame.display.set_caption('Character_movement')
+
+
+character_width = 10
+character_height = 10
+characterSpeedX = 0
+p1Character = pygame.Rect(10, 430, PADDLE_WIDTH, PADDLE_HEIGHT)
+board_color = pygame.color.Color("black")
+
+# clock object that will be used to make the game
+# have the same speed on all machines regardless
+# of the actual machine speed.
+clock = pygame.time.Clock()
+
+while True:
+    # limit the demo to 50 frames per second
+    #clock.tick( 50 );
+
+    # clear screen with black color
+    #screen.fill( (0,0,0) )
+
+    for event in pygame.event.get():
+        if event.type == QUIT:
+            pygame.quit()
+            sys.exit()
+            pygame.display.update()
+
+    keys = pygame.key.get_pressed()
+    if keys[K_LEFT]:
+        p1Character.left = p1Paddle.left + paddleSpeedX - 5
+
+    if keys[K_RIGHT]:
+        p1Character.left = p1Paddle.left + paddleSpeedX + 5
+        
+    if keys[K_UP]:
+         
+
+    # draw the character
+    screen.fill( Character_COLOR, p1Character );
+
+    pygame.display.update()
