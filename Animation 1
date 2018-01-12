@@ -18,9 +18,9 @@ if direction == 'right':
     DISPLAYSURF.blit(catImg, (catx, caty))
     
     for event in pygame.event.get():
-      if event.type == QUIT:a
+      if event.type == QUIT:
         pygame.quit()
         sys.exit()
         
   pygame.display.update()
-  fpsColck.tick(FPS)
+  fpsClock.tick(FPS)
