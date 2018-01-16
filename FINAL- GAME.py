@@ -40,3 +40,5 @@ def main():
 def showStartScreen():
     titleFont = pygame.font.Font('freesansbold.ttf', 100)
     titleSurf1 = titleFont.render('Space Invaders', True, BLUE)
+
+def runGame():
