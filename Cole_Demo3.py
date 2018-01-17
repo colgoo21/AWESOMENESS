@@ -8,10 +8,10 @@ pygame.display.set_caption("SPACE INVADERS BETA")
 
 black = (0, 0, 0)
 white = (255, 255, 255)
+red = (255, 0, 0)
 
 
-
-moveX, moveY = 0, 0
+moveX , moveY = 0, 0
 
 clock = pygame.time.Clock()
 
@@ -21,9 +21,11 @@ class Sprite:
         self.y = y
         self.width = 50
         self.height = 50
+        self.image = pygame.image.load("alien.png")
 
     def render(self):
-        pygame.draw.rect(window, white, (self.x, self.y, self.width, self.height))
+        window.blit(self.image, (self.x, self.y, self.width, self.height))
+
 
 player = Sprite(100, 150)
 
