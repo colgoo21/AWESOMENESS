@@ -30,6 +30,10 @@ player = Sprite(100, 150)
 gameloop = True
 while gameloop:
     for event in pygame.event.get():
+        if player.x <= 0:
+            player.x = 0
+        if player.x >= 750:
+            player.x = 750
         if event.type == pygame.QUIT:
             gameloop = False
         if event.type == pygame.KEYDOWN:
