@@ -3,8 +3,8 @@ from pygame.locals import *
 
 # this is where all of the variables will be defined
 FPS = 15
-WINDOWWIDTH = 1000
-WINDOWHEIGHT = 1000
+WINDOWWIDTH = 700
+WINDOWHEIGHT = 700
 SPEED = 25
 
 # this is where we have all of the colors
@@ -14,9 +14,6 @@ WHITE = ( 255, 255, 255)
 BLUE = (    0,   0, 255)
 
 # this is where we have our controls
-
-UP = 'up'
-DOWN = 'down'
 LEFT = 'left'
 RIGHT = 'right'
 
@@ -42,3 +39,41 @@ def showStartScreen():
     titleSurf1 = titleFont.render('Space Invaders', True, BLUE)
 
 def runGame():
+    # start him at the middle
+    startx = WINDOWWIDTH / 2
+    ship_coordinates = [{'x': startx,       'y':0},
+                        {'x': startx-1,     'y':0},
+                        {'x': startx-2,     'y':0},
+                        {'x': startx+1,     'y': 0},
+                        {'x': startx+2,     'y': 0},
+                        {'x': startx,       'y': 1},
+                        {'x': startx - 1,   'y': 1},
+                        {'x': startx - 2,   'y': 1},
+                        {'x': startx + 1,   'y': 1},
+                        {'x': startx + 2,   'y': 1},
+                        {'x': startx,       'y': 2},
+                        {'x': startx - 1,   'y': 2},
+                        {'x': startx - 2,   'y': 2},
+                        {'x': startx + 1,   'y': 2},
+                        {'x': startx + 2,   'y': 2},]
+
+    # move him left/right, and how quit
+    while True:
+        for event in pygame.event.get():
+            if event.type == QUIT:
+                terminate()
+            elif event.type == KEYDOWN:
+                if (event.key == K_LEFT or event.key == K_a):
+                    direction = LEFT
+                elif (event.key == K_RIGHT or event.key == K_d):
+                    direction = RIGHT
+                elif event.key == K_ESCAPE:
+                    terminate()
+
+
+def showGameOverScreen():
+    return 0
+
+def terminate():
+    pygame.quit()
+    sys.exit()
