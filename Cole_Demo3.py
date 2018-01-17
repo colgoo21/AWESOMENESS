@@ -11,7 +11,7 @@ white = (255, 255, 255)
 
 
 
-moveX, moveY = 0, 0
+moveX = 0
 
 clock = pygame.time.Clock()
 
@@ -41,22 +41,15 @@ while gameloop:
                 moveX = -5
             if event.key == pygame.K_RIGHT:
                 moveX = 5
-            #if event.key == pygame.K_UP:
-            #    moveY = -5
-            #if event.key == pygame.K_DOWN:
-              #  moveY = 5
+            if event.key == pygame.K_SPACE:
+                shoot
         if event.type == pygame.KEYUP:
             if event.key == pygame.K_LEFT:
                 moveX = 0
             if event.key == pygame.K_RIGHT:
                 moveX = 0
-            #if event.key == pygame.K_UP:
-             #   moveY = 0
-            #if event.key == pygame.K_DOWN:
-             #   moveY = 0
     window.fill(black)
     player.x += moveX
-    player.y += moveY
     player.render()
     clock.tick(50)
     pygame.display.flip()
