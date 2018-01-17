@@ -18,7 +18,7 @@ clock = pygame.time.Clock()
 class Sprite:
     def __init__(self, x, y):
         self.x = x
-        self.y = y
+        self.y = 550
         self.width = 50
         self.height = 50
 
@@ -37,19 +37,19 @@ while gameloop:
                 moveX = -5
             if event.key == pygame.K_RIGHT:
                 moveX = 5
-            if event.key == pygame.K_UP:
-                moveY = -5
-            if event.key == pygame.K_DOWN:
-                moveY = 5
+            #if event.key == pygame.K_UP:
+            #    moveY = -5
+            #if event.key == pygame.K_DOWN:
+              #  moveY = 5
         if event.type == pygame.KEYUP:
             if event.key == pygame.K_LEFT:
                 moveX = 0
             if event.key == pygame.K_RIGHT:
                 moveX = 0
-            if event.key == pygame.K_UP:
-                moveY = 0
-            if event.key == pygame.K_DOWN:
-                moveY = 0
+            #if event.key == pygame.K_UP:
+             #   moveY = 0
+            #if event.key == pygame.K_DOWN:
+             #   moveY = 0
     window.fill(black)
     player.x += moveX
     player.y += moveY
