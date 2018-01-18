@@ -25,6 +25,17 @@ class Sprite:
     def render(self):
         pygame.draw.rect(window, white, (self.x, self.y, self.width, self.height))
 
+    def shoot_bullet(self):
+        bullet = pygame.image.load('bullet.png')
+        bullet.x = self.x
+        bullet.y = 0
+        while bullet.y != 550:
+            bullet += 1
+        if bullet.y == 550:
+            del(bullet)
+
+
+
 player = Sprite(100, 150)
 
 gameloop = True
@@ -42,12 +53,14 @@ while gameloop:
             if event.key == pygame.K_RIGHT:
                 moveX = 5
             if event.key == pygame.K_SPACE:
-                shoot
+                player.shoot_bullet()
         if event.type == pygame.KEYUP:
             if event.key == pygame.K_LEFT:
                 moveX = 0
             if event.key == pygame.K_RIGHT:
                 moveX = 0
+            if event.key == pygame.K_SPACE:
+
     window.fill(black)
     player.x += moveX
     player.render()
