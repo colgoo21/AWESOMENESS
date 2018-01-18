@@ -49,6 +49,15 @@ class Enemy:
         self.image = pygame.image.load('enemy.png')
 
     def eight_by_five(self):
+        enemy = 0
+        while enemy != 40:
+            enemy.x = 0
+            enemy.y = 0
+            enemy.x += 10
+            enemy += 1
+            if enemy % 8 == 0:
+                enemy.x = 0
+                enemy.y = 20
 
 
 
