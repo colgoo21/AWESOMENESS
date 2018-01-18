@@ -10,8 +10,7 @@ black = (0, 0, 0)
 white = (255, 255, 255)
 
 
-
-moveX, moveY = 0, 0
+moveX = 0
 
 clock = pygame.time.Clock()
 
