@@ -10,7 +10,6 @@ black = (0, 0, 0)
 white = (255, 255, 255)
 
 
-
 moveX = 0
 
 clock = pygame.time.Clock()
@@ -18,12 +17,13 @@ clock = pygame.time.Clock()
 class Sprite:
     def __init__(self, x, y):
         self.x = x
-        self.y = 550
+        self.y = y
         self.width = 50
         self.height = 50
+        self.image = pygame.image.load('alien.png')
 
     def render(self):
-        pygame.draw.rect(window, white, (self.x, self.y, self.width, self.height))
+        window.blit(self.image, (self.x, self.y))
 
     def shoot_bullet(self):
         bullet = pygame.image.load('bullet.png')
