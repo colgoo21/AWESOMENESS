@@ -1,79 +1,72 @@
 import pygame, sys
 from pygame.locals import *
+from Cole_Demo3 import *
 
+class Game (object):
+    def __init__(self):
 # this is where all of the variables will be defined
-FPS = 15
-WINDOWWIDTH = 700
-WINDOWHEIGHT = 700
-SPEED = 25
+        self.FPS = 15
+        self.WINDOWWIDTH = 700
+        self.WINDOWHEIGHT = 700
+        self.SPEED = 25
 
 # this is where we have all of the colors
 #           R    G    B
-BLACK = (   0,   0,   0)
-WHITE = ( 255, 255, 255)
-BLUE = (    0,   0, 255)
+        self.BLACK = (   0,   0,   0)
+        self.WHITE = ( 255, 255, 255)
+        self.BLUE = (    0,   0, 255)
 
 # this is where we have our controls
-LEFT = 'left'
-RIGHT = 'right'
+        self.LEFT = 'left'
+        self.RIGHT = 'right'
 
 # this is the main method
 
 
-def main():
-    global DISPLAYSURF, BASICFONT
-    pygame.init()
-    DISPLAYSURF = pygame.display.set_mode((WINDOWWIDTH, WINDOWHEIGHT))
-    BASICFONT = pygame.font.Font('freesansbold.ttf', 18)
-    pygame.display.set_caption('Space Invaders')
+    def main(self):
+        global DISPLAYSURF, BASICFONT
+        pygame.init()
+        DISPLAYSURF = pygame.display.set_mode((self.WINDOWWIDTH, sel.WINDOWHEIGHT))
+        BASICFONT = pygame.font.Font('freesansbold.ttf', 18)
+        pygame.display.set_caption('Space Invaders')
 
-    showStartScreen()
-    while True:
-        runGame()
-        showGameOverScreen()
+        self.showStartScreen()
+        while True:
+            self.runGame()
+            self.showGameOverScreen()
 
-# this is where we define all of our functions
+    # this is where we define all of our functions
 
-def showStartScreen():
-    titleFont = pygame.font.Font('freesansbold.ttf', 100)
-    titleSurf1 = titleFont.render('Space Invaders', True, BLUE)
+    def showStartScreen(self):
+        titleFont = pygame.font.Font('freesansbold.ttf', 100)
+        titleSurf1 = titleFont.render('Space Invaders', True, self.BLUE)
 
-def runGame():
-    # start him at the middle
-    startx = WINDOWWIDTH / 2
-    ship_coordinates = [{'x': startx,       'y':0},
-                        {'x': startx-1,     'y':0},
-                        {'x': startx-2,     'y':0},
-                        {'x': startx+1,     'y': 0},
-                        {'x': startx+2,     'y': 0},
-                        {'x': startx,       'y': 1},
-                        {'x': startx - 1,   'y': 1},
-                        {'x': startx - 2,   'y': 1},
-                        {'x': startx + 1,   'y': 1},
-                        {'x': startx + 2,   'y': 1},
-                        {'x': startx,       'y': 2},
-                        {'x': startx - 1,   'y': 2},
-                        {'x': startx - 2,   'y': 2},
-                        {'x': startx + 1,   'y': 2},
-                        {'x': startx + 2,   'y': 2},]
+    def runGame(self):
+        # start him at the middle
+        startx = self.WINDOWWIDTH / 2
+        ship_coordinates = [{'x': startx,       'y':0},
+                            {'x': startx-1,     'y':0},
+                            {'x': startx-2,     'y':0},
+                            {'x': startx+1,     'y': 0},
+                            {'x': startx+2,     'y': 0},
+                            {'x': startx,       'y': 1},
+                            {'x': startx - 1,   'y': 1},
+                            {'x': startx - 2,   'y': 1},
+                            {'x': startx + 1,   'y': 1},
+                            {'x': startx + 2,   'y': 1},
+                            {'x': startx,       'y': 2},
+                            {'x': startx - 1,   'y': 2},
+                            {'x': startx - 2,   'y': 2},
+                            {'x': startx + 1,   'y': 2},
+                            {'x': startx + 2,   'y': 2},]
 
-    # move him left/right, and how quit
-    while True:
-        for event in pygame.event.get():
-            if event.type == QUIT:
-                terminate()
-            elif event.type == KEYDOWN:
-                if (event.key == K_LEFT or event.key == K_a):
-                    direction = LEFT
-                elif (event.key == K_RIGHT or event.key == K_d):
-                    direction = RIGHT
-                elif event.key == K_ESCAPE:
-                    terminate()
+        # move him left/right, and how quit
+        self.left_right_stop()
 
 
-def showGameOverScreen():
-    return 0
+    def showGameOverScreen(self):
+        return 0
 
-def terminate():
-    pygame.quit()
-    sys.exit()
+    def terminate(self):
+        pygame.quit()
+        sys.exit()

@@ -34,6 +34,8 @@ class Sprite:
         if bullet.y == 550:
             del(bullet)
 
+    def dont_shoot_bullet(self):
+        del(self.shoot_bullet)
 
 
 player = Sprite(100, 150)
@@ -60,6 +62,7 @@ while gameloop:
             if event.key == pygame.K_RIGHT:
                 moveX = 0
             if event.key == pygame.K_SPACE:
+                player.dont_shoot_bullet()
 
     window.fill(black)
     player.x += moveX
