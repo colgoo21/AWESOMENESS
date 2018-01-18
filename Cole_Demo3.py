@@ -20,11 +20,12 @@ class Sprite:
         self.y = y
         self.width = 50
         self.height = 50
+        self.image = pygame.image.load('alien.png')
 
     def render(self):
-        pygame.draw.rect(window, white, (self.x, self.y, self.width, self.height))
+        window.blit(self.image, (self.x, self.y))
 
-player = Sprite(100, 150)
+player = Sprite(350, 450)
 
 gameloop = True
 while gameloop:
@@ -36,22 +37,13 @@ while gameloop:
                 moveX = -5
             if event.key == pygame.K_RIGHT:
                 moveX = 5
-            if event.key == pygame.K_UP:
-                moveY = -5
-            if event.key == pygame.K_DOWN:
-                moveY = 5
         if event.type == pygame.KEYUP:
             if event.key == pygame.K_LEFT:
                 moveX = 0
             if event.key == pygame.K_RIGHT:
                 moveX = 0
-            if event.key == pygame.K_UP:
-                moveY = 0
-            if event.key == pygame.K_DOWN:
-                moveY = 0
     window.fill(black)
     player.x += moveX
-    player.y += moveY
     player.render()
     clock.tick(50)
     pygame.display.flip()
