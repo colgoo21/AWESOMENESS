@@ -69,13 +69,15 @@ class Shield:
     def four_shields(self):
         shield = 0
         shield.x = 175
-        shield.y = 100
+        shield.y = 500
         while shield != 4:
             shield.x += 175
             shield += 1
 
 
 player = Sprite(350, 450)
+shield = Shield(175, 500)
+enemy = Enemy(0, 0)
 
 gameloop = True
 while gameloop:
@@ -83,7 +85,7 @@ while gameloop:
         if player.x <= 0:
             player.x = 0
         if player.x >= 750:
-            player.x = 750
+            player.x = 700
         if event.type == pygame.QUIT:
             gameloop = False
         if event.type == pygame.KEYDOWN:
