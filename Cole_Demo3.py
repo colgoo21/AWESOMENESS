@@ -29,7 +29,7 @@ class Sprite:
         bullet = pygame.image.load('bullet.png')
         self.width = 5
         self.height = 30
-        bullet.x = self.x
+        bullet.x = player.x
         bullet.y = 0
         while bullet.y != 550:
             bullet += 1
@@ -46,7 +46,7 @@ class Enemy:
         self.y = y
         self.width = 50
         self.height = 17
-        self.image = pygame.image.load('enemy.png')
+        enemy = pygame.image.load('enemy.png')
 
     def eight_by_five(self):
         enemy = 0
@@ -59,6 +59,20 @@ class Enemy:
                 enemy.x = 0
                 enemy.y = 20
 
+class Shield:
+    def __init__(self, x, y):
+        self.x = x
+        self.y = y
+        self.hp = 15
+        shield = pygame.image.load('shield.png')
+
+    def four_shields(self):
+        shield = 0
+        shield.x = 175
+        shield.y = 100
+        while shield != 4:
+            shield.x += 175
+            shield += 1
 
 
 player = Sprite(350, 450)
