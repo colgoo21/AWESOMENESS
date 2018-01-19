@@ -60,14 +60,14 @@ def runGame():
     # move him left/right, and how quit
     while True:
         for event in pygame.event.get():
-            if event.type == QUIT:
+            if event.type == pygame.QUIT:
                 terminate()
-            elif event.type == KEYDOWN:
-                if (event.key == K_LEFT or event.key == K_a):
+            elif event.type == pygame.KEYDOWN:
+                if (event.key == pygame.K_LEFT or event.key == pygame.K_a):
                     direction = LEFT
-                elif (event.key == K_RIGHT or event.key == K_d):
+                elif (event.key == pygame.K_RIGHT or event.key == pygame.K_d):
                     direction = RIGHT
-                elif event.key == K_ESCAPE:
+                elif event.key == pygame.K_ESCAPE:
                     terminate()
 
 
