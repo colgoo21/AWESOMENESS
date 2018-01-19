@@ -14,7 +14,6 @@ moveX = 0
 
 clock = pygame.time.Clock()
 
-
 class Sprite:
     def __init__(self, x, y):
         self.x = x
