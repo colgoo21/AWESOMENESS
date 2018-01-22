@@ -1,4 +1,5 @@
 import pygame
+import time
 
 pygame.init()
 
@@ -30,10 +31,10 @@ class Sprite:
         self.width = 5
         self.height = 30
         bullet.x = player.x
-        bullet.y = 0
-        while bullet.y != 550:
-            bullet += 1
-        if bullet.y == 570:
+        bullet.y = 550
+        while bullet.y != 0:
+            bullet -= 1
+        if bullet.y == 0:
             del(bullet)
 
     def dont_shoot_bullet(self):
@@ -44,10 +45,10 @@ class Enemy:
         # 8 by 5
         self.x = x
         self.y = y
+        self.hp = 1
         self.width = 50
         self.height = 17
         enemy = pygame.image.load('enemy.png')
-
     def eight_by_five(self):
         enemy = 0
         while enemy != 40:
@@ -55,15 +56,33 @@ class Enemy:
             enemy.y = 0
             enemy.x += 10
             enemy += 1
+            enemy = pygame.image.load('enemy.png')
             if enemy % 8 == 0:
                 enemy.x = 0
                 enemy.y = 20
+                enemy = pygame.image.load('enemy.png')
+    def enemy_shoots(self):
+        bullet = pygame.image.load('bullet.png')
+        bullet.width = 5
+        bullet.height = 30
+        while enemy.hp !=0:
+            x = 0
+            time.sleep(5)
+            x += 1
+            bullet.x = enemy.x
+            while bullet.y != 550:
+                bullet += 1
+            if bullet.y == 550:
+                del (bullet)
+
 
 class Shield:
     def __init__(self, x, y):
         self.x = x
         self.y = y
         self.hp = 15
+        self.width = 100
+        self.length = 100
         shield = pygame.image.load('shield.png')
 
     def four_shields(self):
@@ -73,6 +92,12 @@ class Shield:
         while shield != 4:
             shield.x += 175
             shield += 1
+
+    def kill_shield(self):
+        if enemy.bullet.y == shield:
+            shield.hp -= 1
+        if shield.hp == 0:
+            del(shield)
 
 
 player = Sprite(350, 450)
