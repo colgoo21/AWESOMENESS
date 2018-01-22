@@ -11,7 +11,7 @@
  #           sys.exit()
 #    pygame.display.update()
 
-'''
+
 import pygame, sys
 from pygame.locals import *
 
@@ -54,9 +54,7 @@ while True:
             pygame.quit()
             sys.exit()
     pygame.display.update()
-    '''
 
-'''
 #cat annimation
 import pygame, sys
 from pygame import *
@@ -105,8 +103,7 @@ while True: #the main game loop
 
     pygame.display.update()
     fpsClock.tick(FPS) 
-'''
-''' 
+
 # fonts
 import pygame, sys
 from pygame.locals import *
@@ -132,6 +129,6 @@ while True:
             pygame.quit()
             sys.exit()
     pygame.display.update()
-    '''
+
 
 
