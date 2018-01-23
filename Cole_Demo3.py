@@ -83,7 +83,7 @@ bullets = pygame.sprite.Group()
 enemies = pygame.sprite.Group()
 player = Player()
 all_sprites.add(player)
-for i in range(1):
+for i in range(10):
     e = Enemy()
     all_sprites.add(e)
     enemies.add(e)
