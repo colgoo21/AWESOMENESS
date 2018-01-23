@@ -1,4 +1,5 @@
 import pygame
+import random
 
 WIDTH = 800
 HEIGHT = 600
@@ -43,10 +44,29 @@ class Player(pygame.sprite.Sprite):
         all_sprites.add(bullet)
         bullets.add(bullet)
 
+
+class Enemy(pygame.sprite.Sprite):
+    def __init__(self):
+        pygame.sprite.Sprite.__init__(self)
+        self.image = pygame.Surface((25, 25))
+        self.image.fill(GREEN)
+        self.rect = self.image.get_rect()
+        self.rect.x = random.randrange(WIDTH - self.rect.width)
+        self.rect.y = random.randrange(-100, -40)
+        self.speedy = random.randrange(1, 8)
+
+    def update(self):
+        self.rect.y += self.speedy
+        if self.rect.top > HEIGHT + 10:
+            self.rect.x = random.randrange(WIDTH - self.rect.width)
+            self.rect.y = random.randrange(-100, -40)
+            self.speedy = random.randrange(1, 8)
+
+
 class Bullet(pygame.sprite.Sprite):
     def __init__(self, x, y):
         pygame.sprite.Sprite.__init__(self)
-        self.image = pygame.Surface((5, 30))
+        self.image = pygame.Surface((5, 20))
         self.image.fill(RED)
         self.rect = self.image.get_rect()
         self.rect.bottom = y
@@ -60,9 +80,13 @@ class Bullet(pygame.sprite.Sprite):
 
 all_sprites = pygame.sprite.Group()
 bullets = pygame.sprite.Group()
+enemies = pygame.sprite.Group()
 player = Player()
 all_sprites.add(player)
-
+for i in range(1):
+    e = Enemy()
+    all_sprites.add(e)
+    enemies.add(e)
 
 running = True
 while running:
