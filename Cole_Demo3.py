@@ -109,6 +109,8 @@ while running:
             all_sprites.remove(bullet)
             enemies.remove(enemy)
             all_sprites.remove(enemy)
+            #enemies.add(enemy)
+            #all_sprites.add(enemy)
 
     screen.fill(BLACK)
     all_sprites.draw(screen)
