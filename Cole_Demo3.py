@@ -50,6 +50,7 @@ class Enemy(pygame.sprite.Sprite):
         pygame.sprite.Sprite.__init__(self)
         self.image = pygame.Surface((25, 25))
         self.image.fill(GREEN)
+        self.image = pygame.transform.scale(pygame.image.load('enemy.png'), (50, 54))
         self.rect = self.image.get_rect()
         self.rect.x = random.randrange(WIDTH - self.rect.width)
         self.rect.y = random.randrange(-100, -40)
@@ -78,6 +79,7 @@ class Bullet(pygame.sprite.Sprite):
         if self.rect.bottom < 0:
             self.kill()
 
+
 all_sprites = pygame.sprite.Group()
 bullets = pygame.sprite.Group()
 enemies = pygame.sprite.Group()
@@ -97,8 +99,16 @@ while running:
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_SPACE:
                 player.shoot()
-
     all_sprites.update()
+    for bullet in bullets:
+        hit = pygame.sprite.spritecollide(bullet, enemies, True)
+
+#this is where it kills an enemy
+        for enemy in hit:
+            bullets.remove(bullet)
+            all_sprites.remove(bullet)
+            enemies.remove(enemy)
+            all_sprites.remove(enemy)
 
     screen.fill(BLACK)
     all_sprites.draw(screen)
