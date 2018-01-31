@@ -47,6 +47,7 @@ class Player(pygame.sprite.Sprite):
 
 class Enemy(pygame.sprite.Sprite):
     def __init__(self):
+        count = 1
         pygame.sprite.Sprite.__init__(self)
         self.image = pygame.Surface((25, 25))
         self.image.fill(GREEN)
@@ -103,14 +104,13 @@ while running:
     for bullet in bullets:
         hit = pygame.sprite.spritecollide(bullet, enemies, True)
 
+
 #this is where it kills an enemy
         for enemy in hit:
             bullets.remove(bullet)
             all_sprites.remove(bullet)
             enemies.remove(enemy)
             all_sprites.remove(enemy)
-            #enemies.add(enemy)
-            #all_sprites.add(enemy)
 
     screen.fill(BLACK)
     all_sprites.draw(screen)
