@@ -86,7 +86,7 @@ bullets = pygame.sprite.Group()
 enemies = pygame.sprite.Group()
 player = Player()
 all_sprites.add(player)
-for i in range(1):
+for i in range(200):
     e = Enemy()
     all_sprites.add(e)
     enemies.add(e)
@@ -111,6 +111,9 @@ while running:
             all_sprites.remove(bullet)
             enemies.remove(enemy)
             all_sprites.remove(enemy)
+    hits = pygame.sprite.spritecollide(player, enemies, False)
+    if hits:
+        running = False
 
     screen.fill(BLACK)
     all_sprites.draw(screen)
