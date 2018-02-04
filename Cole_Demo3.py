@@ -100,12 +100,11 @@ while running:
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_SPACE:
                 player.shoot()
+
     all_sprites.update()
     for bullet in bullets:
         hit = pygame.sprite.spritecollide(bullet, enemies, True)
 
-
-#this is where it kills an enemy
         for enemy in hit:
             bullets.remove(bullet)
             all_sprites.remove(bullet)
