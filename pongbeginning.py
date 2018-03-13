@@ -13,6 +13,14 @@ pygame.mixer.init()
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("PONG BETA")
 clock = pygame.time.Clock()
+FONT = pygame.font.match_font('arial')
+
+def draw_text(surf, text, size, x, y):
+    font = pygame.font.Font(FONT, size)
+    text_surface = font.render(text, True, WHITE)
+    text_rect = text_surface.get_rect()
+    text_rect.midtop = (x, y)
+    surf.blit(text_surface, text_rect)
 
 class Player2(pygame.sprite.Sprite):
     def __init__(self):
@@ -23,8 +31,12 @@ class Player2(pygame.sprite.Sprite):
         self.rect.centerx = WIDTH - 50
         self.rect.bottom = HEIGHT/2
         self.speedy = 0
+        self.score = 0
+        self.scoreFont = pygame.font.Font(FONT, 64)
 
     def update(self):
+        draw_text(screen, str(self.score), 8, (WIDTH / 2) + 8, HEIGHT / 2)
+        self.scoring()
         self.speedy = 0
         keystate = pygame.key.get_pressed()
         if keystate[pygame.K_UP]:
@@ -37,6 +49,11 @@ class Player2(pygame.sprite.Sprite):
         if self.rect.bottom > HEIGHT:
             self.rect.bottom = HEIGHT
 
+    def scoring(self):
+        if self.score == 10:
+            game_over_screen_p2()
+
+
 class Player1(pygame.sprite.Sprite):
     def __init__(self):
         pygame.sprite.Sprite.__init__(self)
@@ -46,8 +63,12 @@ class Player1(pygame.sprite.Sprite):
         self.rect.centerx = 50
         self.rect.bottom = HEIGHT/2
         self.speedy = 0
+        self.score = 0
+        self.scoreFont = pygame.font.Font(FONT, 64)
 
     def update(self):
+        draw_text(screen, str(self.score), 8, (WIDTH / 2) + 8, HEIGHT / 2)
+        self.scoring()
         self.speedy = 0
         keystate = pygame.key.get_pressed()
         if keystate[pygame.K_w]:
@@ -59,6 +80,10 @@ class Player1(pygame.sprite.Sprite):
             self.rect.top = 0
         if self.rect.bottom > HEIGHT:
             self.rect.bottom = HEIGHT
+
+    def scoring(self):
+        if self.score == 10:
+            game_over_screen_p1()
 
 class Ball(pygame.sprite.Sprite):
     def __init__(self):
@@ -80,9 +105,11 @@ class Ball(pygame.sprite.Sprite):
             self.speedy *= -1
         if self.rect.x <= 0:
             self.__init__()
+            player2.score += 1
         if self.rect.x + 8 >= WIDTH:
             self.__init__()
             self.speedx *= -1
+            player1.score += 1
         for x in range(0, 64):
             if self.rect.y == player2.rect.y + x:
                 if self.rect.x >= player2.rect.x - 16:
@@ -92,17 +119,31 @@ class Ball(pygame.sprite.Sprite):
                 if self.rect.x <= player1.rect.x + 16:
                     self.speedx *= -1
                     break
-        for x in range(-16, 16):
-            if self.rect.top == player2.rect.bottom:
-                self.speedx *= 1
-            if self.rect.top == player1.rect.bottom:
-                self.speedx *= 1
-            if self.rect.bottom == player2.rect.top:
-                self.speedx *= 1
-            if self.rect.bottom == player1.rect.top:
-                self.speedx *= 1
 
 
+def game_over_screen_p1():
+    draw_text(screen, "Player 1 wins!!", 32, WIDTH/2, 20)
+    pygame.display.flip()
+    waiting = True
+    while waiting:
+        clock.tick(FPS)
+        for event in pygame.event.get():
+            if event == pygame.QUIT:
+                exit()
+            elif event.type == pygame.KEYUP:
+                waiting = False
+
+def game_over_screen_p2():
+    draw_text(screen, "Player 2 wins!!", 32, WIDTH/2, 20)
+    pygame.display.flip()
+    waiting = True
+    while waiting:
+        clock.tick(FPS)
+        for event in pygame.event.get():
+            if event == pygame.QUIT:
+                exit()
+            elif event.type == pygame.KEYUP:
+                waiting = False
 
 
 all_sprites = pygame.sprite.Group()
@@ -118,7 +159,6 @@ while running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
-
     all_sprites.update()
 
     screen.fill(BLACK)
